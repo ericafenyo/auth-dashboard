@@ -1,4 +1,6 @@
-# auth-dashboard
+# Auth dashboard
+This is the dashboard for our [authentication api](https://github.com/ericafenyo/authentication) which helps to manage user authentication from 
+basic email-password to JSON Web Token (JWT) validation.
 
 ## Project setup
 ```
