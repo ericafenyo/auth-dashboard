@@ -1,0 +1,52 @@
+/** == alpha states == **/
+$alpha-active: 0.87;
+$alpha-inactive: 0.54;
+$alpha-disabled: 0.38;
+
+/** == utility colors == **/
+$white: #ffffff;
+$black: #000000;
+$black-active: #202020;
+$black-inactive: #727272;
+$black-disabled: #9a9a9a;
+
+$green: #48bb78;
+$green-dark: #38a169;
+$green-inactive: #7ddfc3;
+$green-disabled: #d5f2ea;
+
+$red: #ef4444;
+$red-inactive: #fdafbb;
+$red-disabled: #fbe4e8;
+$orange: #f77d05;
+$blue: #1665d8;
+$blue-inactive: #66b5f8;
+$blue-disabled: #d5e9fa;
+$violet: #6977ff;
+$yellow: #facf55;
+$yellow-inactive: #ffe29d;
+$yellow-disabled: #fff8e7;
+
+$indigo: #6286ed;
+$indigo-dark: #5c6ac4;
+
+$grey: #8f92a1;
+
+/** == content colors == **/
+$color-primary-text: #3f3356;
+$color-primary-headline: #1a051d;
+$color-secondary-text: #6b6c6f;
+$color-tertiary-text: #9ea0a5;
+$color-border: #ecebed;
+
+/** == theme colors == **/
+// $color-surface: #f1f3f8;
+$color-surface: #f7f7f7;
+$color-accent: #6286ed;
+
+/** == break points == **/
+$phone-width: 360px;
+$phablet-width: 480px;
+$tablet-width: 768px;
+$laptop-width: 992px;
+$desktop-width: 1200px;
