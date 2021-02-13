@@ -96,14 +96,11 @@ export default class Input extends Vue {
 <style lang="scss" scoped>
 @import "@/scss/_mixins";
 
-@mixin InputPlaceholderStyle {
+.input {
   ::placeholder {
     color: #4b5563;
   }
-}
 
-.input {
-  @include InputPlaceholderStyle;
   display: flex;
   flex-direction: column;
 
@@ -117,18 +114,18 @@ export default class Input extends Vue {
 
   /deep/ input {
     height: 37px;
-    font-size: 0.875rem;
+    font-size: $font-size-body;
     color: var(--color-primary-text);
     background: var(--color-surface-lightest);
     border: 1.5px solid var(--color-border);
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-    border-radius: 4px;
+    border-radius: $border-radius;
     z-index: 0;
     transition: all 0.2s;
 
     &:hover {
-      background: #f3f4f6;
+      background: $grey-100;
     }
 
     &:focus {
