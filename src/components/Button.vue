@@ -82,7 +82,7 @@ export default class Button extends Vue {
   align-items: center;
   justify-content: center;
   font-size: 0.875rem;
-  border-radius: $border-size;
+  border-radius: $border-radius;
   cursor: pointer;
   transition: all 0.2s;
 
