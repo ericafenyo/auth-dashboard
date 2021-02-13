@@ -15,13 +15,15 @@ $green-dark: #38a169;
 $green-inactive: #7ddfc3;
 $green-disabled: #d5f2ea;
 
-$red: #ef4444;
-$red-inactive: #fdafbb;
+$red: #ff5c5c;
+$red-dark: #ef4444;
 $red-disabled: #fbe4e8;
 $orange: #f77d05;
-$blue: #1665d8;
-$blue-inactive: #66b5f8;
+
+$blue: #3b82f6;
+$blue-dark: #2563eb;
 $blue-disabled: #d5e9fa;
+
 $violet: #6977ff;
 $yellow: #facf55;
 $yellow-inactive: #ffe29d;
@@ -31,9 +33,11 @@ $indigo: #6286ed;
 $indigo-dark: #5c6ac4;
 
 $grey: #8f92a1;
+$grey-100: #f3f4f6;
+$grey-500: #6b7280;
 
 /** == content colors == **/
-$color-primary-text: #3f3356;
+$color-primary-text: #374151;
 $color-primary-headline: #1a051d;
 $color-secondary-text: #6b6c6f;
 $color-tertiary-text: #9ea0a5;
@@ -50,3 +54,9 @@ $phablet-width: 480px;
 $tablet-width: 768px;
 $laptop-width: 992px;
 $desktop-width: 1200px;
+
+// theme
+$color-primary: $blue;
+
+/** == dimensions == **/
+$border-size: 4px;
