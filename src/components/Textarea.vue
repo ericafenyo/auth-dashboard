@@ -109,9 +109,9 @@ export default class Textarea extends Vue {
   }
 
   &:focus {
-    box-shadow: inset 0 0 0px 1px $color-accent;
+    box-shadow: inset 0 0 0px 0.5px $blue;
     background-color: $white;
-    border-color: $color-accent;
+    border-color: $blue;
   }
 }
 </style>
