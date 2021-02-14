@@ -5,6 +5,11 @@ import store from "./store";
 
 import "../src/scss/index.scss";
 
+// Components
+import Icon from "@/components/Icons/Icon.vue";
+
+Vue.component("Icon", Icon);
+
 Vue.config.productionTip = false;
 
 new Vue({
