@@ -31,10 +31,12 @@
 import { Vue, Prop, Component } from "vue-property-decorator";
 
 import InputText from "./InputText.vue";
+import InputPassword from "./InputPassword.vue";
 
 @Component({
   components: {
-    InputText
+    InputText,
+    InputPassword
   }
 })
 export default class Input extends Vue {
@@ -97,10 +99,6 @@ export default class Input extends Vue {
 @import "@/scss/_mixins";
 
 .input {
-  ::placeholder {
-    color: #4b5563;
-  }
-
   display: flex;
   flex-direction: column;
 
@@ -121,19 +119,22 @@ export default class Input extends Vue {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     border-radius: $border-radius;
+    width: 100%;
     z-index: 0;
     transition: all 0.2s;
+    transition-property: border, background, box-shadow;
 
     &:hover {
       background: $grey-100;
     }
 
     &:focus {
-      border-color: var(--color-primary);
-      background: white;
+      box-shadow: inset 0 0 0px 0.5px $blue;
+      background-color: $white;
+      border-color: $blue;
     }
 
-    &.input-error {
+    & ~ .input-error {
       border-color: $red;
     }
   }
