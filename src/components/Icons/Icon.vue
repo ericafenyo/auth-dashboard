@@ -10,20 +10,41 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import * as camelCase from "lodash.camelcase";
+import { camelCase } from "@/util";
 
-import IconBase from "./IconBase.vue";
+import IconBase from "@/components/Icons/IconBase.vue";
 
 import IconEye from "./IconEye.vue";
 import IconEyeOff from "./IconEyeOff.vue";
+import IconInfo from "./IconInfo.vue";
+import IconCritical from "./IconCritical.vue";
+import IconConfirm from "./IconConfirm.vue";
+import IconWarning from "./IconWarning.vue";
+import IconAdd from "./IconAdd.vue";
+import IconClose from "./IconClose.vue";
 
-export type IconOption = "add" | "eye" | "eye-off";
+export type IconOption =
+  | "add"
+  | "eye"
+  | "eye-off"
+  | "info"
+  | "critical"
+  | "confirm"
+  | "warning"
+  | "add"
+  | "close";
 
 @Component({
   components: {
     IconBase,
     IconEye,
-    IconEyeOff
+    IconEyeOff,
+    IconInfo,
+    IconCritical,
+    IconConfirm,
+    IconWarning,
+    IconAdd,
+    IconClose
   }
 })
 export default class Icon extends Vue {
