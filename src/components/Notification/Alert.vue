@@ -1,0 +1,188 @@
+<template>
+  <transition name="slide-horizontal">
+    <div
+      v-if="isVisible"
+      :class="['alert', { 'alert-closable': closable }, composeAlertClasses]"
+    >
+      <Icon :name="computeIcon" class="alert-icon" size="20" />
+      <span v-if="title" v-html="title" class="alert-title" />
+      <span v-if="message" v-html="message" class="alert-message" />
+      <Icon
+        v-if="closable"
+        class="alert-action-close"
+        name="close"
+        size="20"
+        @click.native="onDismiss"
+      />
+    </div>
+  </transition>
+</template>
+
+<script lang="ts">
+import { Vue, Prop, Emit, Component, Watch } from "vue-property-decorator";
+import { IconOption } from "@/components/icons/Icon.vue";
+import { NotificationType } from "./index";
+
+@Component
+export default class Alert extends Vue {
+  isVisible = true;
+  className = "";
+
+  @Prop({ type: String, default: "success" })
+  readonly type!: NotificationType;
+
+  @Prop({ type: String, default: "" })
+  readonly title!: string;
+
+  @Prop({ type: String, default: "" })
+  readonly message!: string;
+
+  @Prop({ type: Boolean, default: false })
+  readonly visible!: boolean;
+
+  @Prop({ type: Boolean, default: true })
+  readonly closable!: boolean;
+
+  get computeIcon(): IconOption {
+    const { type } = this;
+    if (type === "success") {
+      return "confirm";
+    } else if (type === "info") {
+      return "info";
+    } else if (type === "warning") {
+      return "warning";
+    } else if (type === "error") {
+      return "critical";
+    } else {
+      return "confirm";
+    }
+  }
+
+  get composeAlertClasses(): string {
+    return `alert-${this.type}`;
+  }
+
+  @Watch("visible", { immediate: true })
+  onShowAlert(show: boolean) {
+    this.isVisible = show;
+  }
+
+  onDismiss() {
+    this.isVisible = false;
+    this.$emit("dismiss");
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "@/scss/_mixins.scss";
+
+.alert {
+  position: relative;
+  border-left: 4px solid;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 42px;
+  padding-right: 16px;
+  margin-bottom: 24px;
+
+  border-radius: 4px;
+  background-color: $color-surface;
+
+  &-icon {
+    position: absolute;
+    left: 13px;
+    margin-top: 2px;
+  }
+
+  &-action-close {
+    position: absolute;
+    cursor: pointer;
+    color: rgba($black, $alpha-disabled);
+    right: 4px;
+    padding: 8px;
+    top: 5px;
+
+    &:hover {
+      color: rgba($black, $alpha-inactive);
+    }
+  }
+
+  &-title,
+  &-message {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $color-primary-text;
+  }
+
+  &-title {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  &-message {
+    font-size: 0.875rem;
+  }
+
+  &-success {
+    border-color: $green;
+    background-color: rgba($green, 0.1);
+    .alert-icon {
+      color: $green;
+    }
+  }
+
+  &-info {
+    border-color: $blue;
+    background-color: rgba($blue, 0.1);
+
+    .alert-icon {
+      color: $blue;
+    }
+  }
+
+  &-warning {
+    border-color: $orange;
+    background-color: rgba($orange, 0.1);
+
+    .alert-icon {
+      color: $orange;
+    }
+  }
+
+  &-error {
+    border-color: $red;
+    background-color: rgba($red, 0.1);
+    .alert-icon {
+      color: $red;
+    }
+  }
+
+  &-closable {
+    padding-right: 40px;
+  }
+}
+
+.slide-horizontal-enter-active,
+.slide-horizontal-leave-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.slide-horizontal-enter,
+.slide-horizontal-leave-to {
+  opacity: 0;
+}
+
+.slide-toggle-enter-active,
+.slide-toggle-leave-active {
+  transition: height 5s;
+}
+.slide-toggle-enter {
+  height: 48px;
+}
+.slide-toggle-enter,
+.slide-toggle-leave-to {
+  height: 0;
+}
+</style>
