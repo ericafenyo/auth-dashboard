@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { camelCase } from "@/util";
+import camelCase from "lodash/camelCase";
 
 import IconBase from "@/components/Icons/IconBase.vue";
 

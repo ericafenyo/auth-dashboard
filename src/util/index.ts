@@ -1,3 +1,2 @@
-const camelCase = require("lodash.camelcase");
-
+import camelCase from "lodash/camelCase";
 export { camelCase };

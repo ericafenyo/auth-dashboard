@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Emit, Component, Watch } from "vue-property-decorator";
+import { Vue, Prop, Component, Watch } from "vue-property-decorator";
 import { IconOption } from "@/components/icons/Icon.vue";
 import { NotificationType } from "./index";
 
