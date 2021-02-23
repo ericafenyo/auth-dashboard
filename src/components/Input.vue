@@ -13,14 +13,14 @@
       :name="name"
       :disabled="disabled"
       :value="value"
-      @input="args => $emit('input', args)"
+      @input="(args) => $emit('input', args)"
     />
     <span
       v-if="hasHint"
       :class="[
         'input-help-message',
         { 'input-help-message-error': hasError },
-        { hidden: !hasError }
+        { hidden: !hasError },
       ]"
       >Field is required</span
     >
@@ -36,8 +36,8 @@ import InputPassword from "./InputPassword.vue";
 @Component({
   components: {
     InputText,
-    InputPassword
-  }
+    InputPassword,
+  },
 })
 export default class Input extends Vue {
   @Prop({ type: String, default: "" })
@@ -83,7 +83,7 @@ export default class Input extends Vue {
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
-  computeClasses(errors: any[]) {
+  computeClasses(errors: string[]) {
     const { state } = this.$props;
     return (state ? `input-${state}` : "") + (errors[0] ? " input-error" : "");
   }
@@ -132,6 +132,7 @@ export default class Input extends Vue {
       box-shadow: inset 0 0 0px 0.5px $blue;
       background-color: $white;
       border-color: $blue;
+      outline: 0;
     }
 
     & ~ .input-error {
