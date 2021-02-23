@@ -111,7 +111,7 @@ export default class Input extends Vue {
   }
 
   /deep/ input {
-    height: 37px;
+    height: 40px;
     font-size: $font-size-body;
     color: var(--color-primary-text);
     background: var(--color-surface-lightest);
