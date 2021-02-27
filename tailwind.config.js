@@ -4,15 +4,15 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        "120": "30rem",
+        "120": "30rem"
       },
       maxWidth: {
-        "120": "30rem",
-      },
-    },
+        "120": "30rem"
+      }
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 };

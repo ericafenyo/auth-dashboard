@@ -4,6 +4,7 @@
       :type="computeInputType"
       :placeholder="placeholder"
       :id="id"
+      :value="value"
       :name="name"
       @input="$emit('input', $event.target.value)"
       ref="inputPassword"
@@ -24,6 +25,9 @@ import { Vue, Prop, Component } from "vue-property-decorator";
 export default class InputPassword extends Vue {
   @Prop({ type: String, default: "" })
   readonly name!: string;
+
+  @Prop({ type: String, default: "" })
+  readonly value!: string;
 
   @Prop({ type: Boolean, default: false })
   readonly disabled!: boolean;
