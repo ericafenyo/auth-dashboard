@@ -11,10 +11,12 @@ import Input from "@/components/Input.vue";
 import Button from "@/components/Button.vue";
 import Link from "@/components/Link.vue";
 import Icon from "@/components/Icons/Icon.vue";
+import Alert from "@/components/Notification/Alert.vue";
 Vue.component("Input", Input);
 Vue.component("Button", Button);
 Vue.component("Link", Link);
 Vue.component("Icon", Icon);
+Vue.component("Alert", Alert);
 
 Vue.use(Vuelidate);
 Vue.config.productionTip = false;
