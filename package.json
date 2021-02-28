@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build:css": "postcss ./src/tailwind.css -o ./src/scss/_utilities.scss"
+    "build:css": "postcss ./src/tailwind.css -o ./src/scss/_utilities.scss",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
     "autosize": "^4.0.2",
@@ -16,6 +17,7 @@
     "vue": "^2.6.11",
     "vue-apollo": "^3.0.0-beta.11",
     "vue-class-component": "^7.2.3",
+    "vue-i18n": "^8.17.3",
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.2.0",
     "vuelidate": "^0.7.6",
@@ -51,6 +53,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
     "typescript": "~3.9.3",
     "vue-cli-plugin-apollo": "~0.22.2",
+    "vue-cli-plugin-i18n": "~1.0.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11"
   }

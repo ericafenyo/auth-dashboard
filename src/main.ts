@@ -12,6 +12,7 @@ import Button from "@/components/Button.vue";
 import Link from "@/components/Link.vue";
 import Icon from "@/components/Icons/Icon.vue";
 import Alert from "@/components/Notification/Alert.vue";
+import i18n from "./i18n";
 Vue.component("Input", Input);
 Vue.component("Button", Button);
 Vue.component("Link", Link);
@@ -25,5 +26,6 @@ new Vue({
   router,
   store,
   apolloProvider: createProvider(),
-  render: (h) => h(App),
+  i18n,
+  render: h => h(App)
 }).$mount("#app");
