@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuelidate from "vuelidate";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import { store } from "./store";
 import { createProvider } from "./vue-apollo";
 
 import "@/scss/index.scss";
@@ -27,5 +27,7 @@ new Vue({
   store,
   apolloProvider: createProvider(),
   i18n,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
+
+// TODO: update vuex-persistedstate https://github.com/robinvdvleuten/vuex-persistedstate/issues/387
