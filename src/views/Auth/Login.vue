@@ -12,25 +12,28 @@
           @dismiss="showAlert({ visible: false })"
         />
         <form @submit.prevent="onSubmit" novalidate="true">
-          <div class="mb-5">
+          <div class="mb-6">
             <Input
               type="text"
               name="email"
               placeholder="name@example.com"
               label="Email"
-              :className="[{ 'input-error': $v.email.$error }]"
-              :value="email"
+              :error="$v.email.$error"
+              hasHint
+              errorMessage="Email field is required"
               v-model="email"
             />
           </div>
           <div class="mb-5">
             <Input
+              v-model="password"
               label="Password"
               type="password"
               name="password"
+              hasHint
+              errorMessage="Email field is required"
               placeholder="Enter 8 or more characters"
-              :className="[{ 'input-error': $v.password.$error }]"
-              v-model="password"
+              :error="$v.password.$error"
             />
           </div>
           <Button block text="Login" class="mt-6" :loading="isLoading" />
@@ -47,25 +50,22 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Validations } from "vuelidate-property-decorators";
-import { required } from "vuelidate/lib/validators";
-
-import Input from "@/components/Input.vue";
-import Button from "@/components/Button.vue";
-import Link from "@/components/Link.vue";
-import Alert from "@/components/Notification/Alert.vue";
+import { required, email } from "vuelidate/lib/validators";
 import { NotificationOptions } from "@/components/Notification";
+import { Action } from "@/store/actions";
+import { Result } from "../../data/Result";
 
-@Component({ components: { Input, Button, Link, Alert } })
+@Component
 export default class Login extends Vue {
   isLoading = false;
   options: NotificationOptions = {};
 
-  email = "";
-  password = "";
+  email = "bon@transway.fr";
+  password = "Azerty1234";
 
   @Validations()
   validations = {
-    email: { required },
+    email: { required, email },
     password: { required },
   };
 
@@ -84,27 +84,32 @@ export default class Login extends Vue {
     this.password = "";
   }
 
-  onSubmit() {
+  async onSubmit() {
+    this.isLoading = true;
+    this.$v.$touch();
+
     const { $invalid } = this.$v;
     if (!$invalid) {
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-        this.showAlert({
-          type: "error",
-          title: "Oops!",
-          message: "Login not yet implemented",
-          visible: true,
-        });
-      }, 3000);
+      const result: Result = await this.$store.dispatch(Action.AUTHENTICATE, {
+        email: this.email,
+        password: this.password,
+      });
+      if (!result.succeeded) {
+        this.handleError(result.succeeded);
+      } else {
+        this.$router.replace("/");
+      }
     }
+    this.isLoading = false;
+  }
+  handleError(error: any) {
+    console.log(error);
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/scss/_mixins.scss";
-
 .wrapper {
   height: 100%;
   @include phablet {
@@ -113,7 +118,7 @@ export default class Login extends Vue {
   }
 }
 .sign-in {
-  max-width: 360px;
+  max-width: 400px;
   height: 100%;
   margin: 0 auto;
   padding: 2rem 1rem;

@@ -1,29 +1,23 @@
 <template>
   <div class="input ">
-    <div class="flex justify-between mb-2">
-      <label :for="name" class="input-label">{{ label }}</label>
-      <slot name="label-right"></slot>
-    </div>
+    <label :for="name" class="input-label">{{ label }}</label>
     <component
       :is="computeComponent"
-      :class="{ 'input-error': hasError }"
+      :classes="{'input-error': error }"
       :id="name"
       :placeholder="placeholder"
       :type="type"
       :name="name"
       :disabled="disabled"
       :value="value"
-      @input="args => $emit('input', args)"
+      @input="(args) => $emit('input', args)"
     />
     <span
-      v-if="hasHint"
-      :class="[
-        'input-help-message',
-        { 'input-help-message-error': hasError },
-        { hidden: !hasError }
-      ]"
-      >Field is required</span
+      v-if="error"
+      :class="['input-help-message', { 'input-help-message-error': error }, { hidden: !error }]"
     >
+      {{ errorMessage }}
+    </span>
   </div>
 </template>
 
@@ -36,8 +30,8 @@ import InputPassword from "./InputPassword.vue";
 @Component({
   components: {
     InputText,
-    InputPassword
-  }
+    InputPassword,
+  },
 })
 export default class Input extends Vue {
   @Prop({ type: String, default: "" })
@@ -49,11 +43,8 @@ export default class Input extends Vue {
   @Prop({ type: String, default: "" })
   readonly placeholder!: string;
 
-  @Prop({ type: String, default: "" })
-  readonly helperText!: string;
-
   @Prop({ type: Boolean, default: false })
-  readonly hasError!: boolean;
+  readonly error!: boolean;
 
   @Prop({ type: String, default: "" })
   readonly size!: string;
@@ -65,19 +56,10 @@ export default class Input extends Vue {
   readonly name!: string;
 
   @Prop({ type: Boolean, default: false })
-  readonly hasHint!: boolean;
-
-  @Prop({ type: Boolean, default: false })
-  readonly hasAction!: boolean;
-
-  @Prop({ type: Boolean, default: false })
   readonly disabled!: boolean;
 
   @Prop({ type: String, default: "" })
-  readonly actionText!: string;
-
-  @Prop({ type: String, default: "" })
-  readonly actionRoute!: string;
+  readonly errorMessage!: string;
 
   capitalize(value: string) {
     return value.charAt(0).toUpperCase() + value.slice(1);
@@ -108,6 +90,7 @@ export default class Input extends Vue {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: -0.15px;
+    margin-bottom: 8px;
   }
 
   /deep/ input {
@@ -148,6 +131,10 @@ export default class Input extends Vue {
     &-error {
       color: $red;
     }
+  }
+
+  &-error {
+    border-color: $red !important;
   }
 }
 </style>

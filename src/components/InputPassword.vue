@@ -2,6 +2,7 @@
   <span class="input-password">
     <input
       :type="computeInputType"
+      :class="classes"
       :placeholder="placeholder"
       :id="id"
       :value="value"
@@ -31,6 +32,9 @@ export default class InputPassword extends Vue {
 
   @Prop({ type: Boolean, default: false })
   readonly disabled!: boolean;
+
+  @Prop({ type: Object, default: null })
+  readonly classes!: any;
 
   @Prop({ type: String, default: "" })
   readonly helperText!: string;
@@ -76,6 +80,10 @@ export default class InputPassword extends Vue {
   #password[type="password"] {
     font-weight: 500;
     font-size: 1rem;
+  }
+
+  #password.input-error {
+    border-color: $red;
   }
 
   .icon {

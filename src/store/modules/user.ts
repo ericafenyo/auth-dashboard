@@ -44,7 +44,7 @@ export default {
   },
 
   getters: {
-    getAccessToken(state: State): string | undefined {
+    accessToken(state: State): string | undefined {
       return state.credentials.accessToken;
     },
   },

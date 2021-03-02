@@ -1,10 +1,13 @@
 <template>
-  <input @input="$emit('input', $event.target.value)" />
+  <input :class="classes" @input="$emit('input', $event.target.value)" />
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
-export default class InputText extends Vue {}
+export default class InputText extends Vue {
+  @Prop({ type: Object, default: null })
+  readonly classes!: any;
+}
 </script>
